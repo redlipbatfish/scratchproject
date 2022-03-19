@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './App.jsx';
+import store from './store';
+
 
 ReactDOM.render(
-    <h1>Welcome to Habitual</h1>,
+  <Provider store = { store }>
+    <App/>
+  </Provider>, 
   document.getElementById('root')
 );
