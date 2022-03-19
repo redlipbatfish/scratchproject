@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 import App from './App.jsx';
 import store from './store';
 
+import './styles/styles.scss';
+
 import FeedContainer from './containers/FeedContainer.jsx';
 import LoginContainer from './containers/LoginContainer.jsx';
 
@@ -25,3 +27,4 @@ ReactDOM.render(
   </Provider>, 
   document.getElementById('root')
 );
+

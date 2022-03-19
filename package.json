@@ -44,6 +44,8 @@
     "html-webpack-plugin": "^5.5.0",
     "nodemon": "^2.0.15",
     "redux-devtools-extension": "^2.13.9",
+    "sass": "^1.49.9",
+    "sass-loader": "^12.6.0",
     "style-loader": "^3.3.1",
     "webpack": "^5.70.0",
     "webpack-cli": "^4.9.2",

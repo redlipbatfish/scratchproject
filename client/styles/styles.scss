@@ -1,0 +1,68 @@
+$beige: #e3e6c8;
+$yellowgreencrayola: #c8d189;
+$amazon: #247f50;
+$skobeloff: #14797b;
+$bluesapphire: #1c5973;
+$richblack: #153131;
+
+body {
+  background-color: $richblack;
+  font-family:Arial, Helvetica, sans-serif;
+  color: $beige;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.login-input {
+  padding: 15px;
+  margin: 15px;
+  text-align: center;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid $amazon;
+  background-color: $richblack;
+  color: #fafafa;
+  font-size: 1rem;
+}
+::placeholder {
+  color: $beige;
+  opacity: 0.8;
+}
+
+.login-btn {
+  width: 60%;
+  margin: 10px auto;
+  padding: 10px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid $amazon;
+  background-color: $amazon;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $beige;
+}
+
+.login-btn:hover {
+  background-color: $skobeloff;
+  border: 1px solid $skobeloff;
+}
+
+.login-link {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: $beige;
+  text-decoration: underline;
+  background-color: none;
+  text-align: center;
+}
+
+.wrapper-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
