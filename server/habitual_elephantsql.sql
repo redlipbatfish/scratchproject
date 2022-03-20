@@ -37,3 +37,12 @@ CREATE TABLE daily_count(
     data DATE,
     total_percent DECIMAL
 )
+
+
+-- Add Habits
+INSERT INTO habits (habit_name, is_boolean)
+VALUES('Water', false),
+('Make Bed', true),
+('Walk Dog', false),
+('Sleep on Time', true),
+('Stretch', false);
