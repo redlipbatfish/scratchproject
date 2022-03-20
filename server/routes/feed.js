@@ -11,7 +11,7 @@ router.get(
   userController.getUserInfo,
   dbController.getUserInfo,
   (req, res) => {
-    return res.status(200).json('Welcome!');
+    return res.status(200).json(res.locals.calendarReocrd);
   }
 );
 

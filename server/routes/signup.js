@@ -7,7 +7,7 @@ const router = express.Router();
 
 // adding a new user ROUTE HANDLER
 router.post('/', userController.addUser, dbController.saveUser, (req, res) => {
-  return res.status(200).json('Added!');
+  return res.status(200).json({ userid: res.locals.userId });
 });
 
 module.exports = router;

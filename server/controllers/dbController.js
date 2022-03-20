@@ -12,6 +12,7 @@ dbController.saveUser = async (req, res, next) => {
         RETURNING *
         `;
     const newUser = await db.query(saveUserQuery, params);
+    res.locals.userId = newUser.rows[0].id;
     return next();
   } catch (error) {
     return next({
@@ -31,11 +32,14 @@ dbController.checkUser = async (req, res, next) => {
   params = [email, password];
   try {
     const checkUserQuery = `
-    SELECT password FROM users
+    SELECT id AS userId FROM users
     WHERE email = $1 AND password = $2
     `;
-    const checkUser = await db.query(checkUserQuery, params);
-    if (checkUser.rows.length) return next();
+    const result = await db.query(checkUserQuery, params);
+    if (result.rows.length) {
+      res.locals.userId = result.rows[0];
+      return next();
+    }
     return next({
       log: 'No such user or pw dont match',
       status: 400,
@@ -56,10 +60,18 @@ dbController.checkUser = async (req, res, next) => {
 
 // return past history and today's record
 dbController.getUserInfo = async (req, res, next) => {
-  const email = res.locals.userEmail;
-  const idQuery = `SELECT id FROM users WHERE email= $1;`;
-  const userId = await db.query(idQuery, [email]).rows[0];
-
+  const userId = res.locals.userId;
+  const calendarQuery = `
+        SELECT total_percent FROM daily_count
+        WHERE user_id=$1 AND date BETWEEN '2022-03-01' AND (SELECT CURRENT_DATE)
+        ORDER BY date;
+        `;
+  const habitRecord = await db.query(calendarQuery, [userId]);
+  res.locals.calendarReocrd = [];
+  for (let row of habitRecord.rows) {
+    res.locals.calendarReocrd.push(Number(row.total_percent));
+  }
+  return next();
   // const todayRecordQuery = `
   //       SELECT habit_id, fullfilled_percent FROM user_habit_records
   //       WHERE user_id=$1 AND date=(SELECT CURRENT_DATE);

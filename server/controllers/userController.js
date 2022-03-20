@@ -40,15 +40,15 @@ userController.checkUser = (req, res, next) => {
 
 // Get user email from feed request
 userController.getUserInfo = (req, res, next) => {
-  const userEmail = req.body.email;
-  if (!userEmail)
+  const userId = req.body.userId;
+  if (!userId)
     return next({
-      log: 'UserController.getUserInfo ERROR: No user email given',
+      log: 'UserController.getUserInfo ERROR: No user id given',
       message: {
-        err: 'UserController.getUserInfo ERROR: No user email given',
+        err: 'UserController.getUserInfo ERROR: No user id given',
       },
     });
-  res.locals.userEmail = userEmail;
+  res.locals.userId = userId;
   return next();
 };
 

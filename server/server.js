@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 // Define Routes Handler
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
-// app.use('/feed', feedRouter);
+app.use('/feed', feedRouter);
 // app.use('/edithabit', edithabitRouter);
 // app.use('/calendar', calendarRouter);
 
