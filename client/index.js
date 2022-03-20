@@ -23,7 +23,7 @@ export default function AppRouter() {
 
 ReactDOM.render(
   <Provider store = { store }>
-    <App/>
+    <AppRouter/>
   </Provider>, 
   document.getElementById('root')
 );
