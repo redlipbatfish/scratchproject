@@ -11,7 +11,7 @@ import EditHabit from '../components/EditHabit.jsx'
 const FeedContainer = () => {
     return (
     <div>
-        <div>test</div>
+        <EditHabit />
         <TopBar/>
         <Calendar/>
         <ToDo/>

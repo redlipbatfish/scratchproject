@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 const TopBar = () => {
     return (
-        <div>
-        <button id='add-hbt'>Add habit</button>
+        <div className="topbar">
+            <div id='logo'>H</div>
+            <button id='add-hbt'><span id="plus-icon">+&nbsp;</span>&nbsp;Add habit</button>
+            <div id='link-logout'>Logout</div>
         </div>
     );
 };
