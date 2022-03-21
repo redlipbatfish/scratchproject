@@ -52,11 +52,34 @@ userController.getUserInfo = (req, res, next) => {
   return next();
 };
 
-// bigcat drinkwater have_finsihed 0->1
+userController.assignHabit = (req, res, next) => {
+  const { userId, habitName, targetNum } = req.body;
+  const habitPairs = {
+    Water: 1,
+    'Make Bed': 2,
+    'Walk Dog': 3,
+    'Sleep on Time': 4,
+    Stretch: 5,
+  };
+  res.locals.userId = userId;
+  res.locals.habitId = habitPairs[habitName];
+  res.locals.targetNum = targetNum;
+  return next();
+};
 
-// userController: get username, habit, number to change from request and store them into res.locals => ({username: bigcat, habit: drinkwater, prev: 0, after:1})
-
-// dbController: update fullfilled% and daily total%
-userController.updateRecord = () => {};
+userController.updateRecord = (req, res, next) => {
+  const { userId, habitName, newNum } = req.body;
+  const habitPairs = {
+    Water: 1,
+    'Make Bed': 2,
+    'Walk Dog': 3,
+    'Sleep on Time': 4,
+    Stretch: 5,
+  };
+  res.locals.userId = userId;
+  res.locals.habitId = habitPairs[habitName];
+  res.locals.newNum = newNum;
+  return next();
+};
 
 module.exports = userController;

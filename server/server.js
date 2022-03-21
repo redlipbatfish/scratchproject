@@ -25,8 +25,7 @@ app.get('/', (req, res) => {
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/feed', feedRouter);
-// app.use('/edithabit', edithabitRouter);
-// app.use('/calendar', calendarRouter);
+app.use('/edithabit', edithabitRouter);
 
 // Unknown route handler
 app.use((req, res) => res.status(404).send('You are in the wrong place! 😡'));

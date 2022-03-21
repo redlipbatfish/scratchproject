@@ -11,7 +11,12 @@ router.get(
   userController.getUserInfo,
   dbController.getUserInfo,
   (req, res) => {
-    return res.status(200).json(res.locals.calendarReocrd);
+    return res
+      .status(200)
+      .json({
+        calendar: res.locals.calendarReocrd,
+        todayHabit: res.locals.todayHabit,
+      });
   }
 );
 
