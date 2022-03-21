@@ -32,6 +32,7 @@ class FeedContainer extends Component {
         return(
             <div>
                 {/* <EditHabit /> */}
+                {/* <AddHabit /> */}
                 <TopBar/>
                 <Calendar/>
                 <ToDos completeBool={this.props.completeBoolHabit} incrementNum={this.props.incrementNumHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>

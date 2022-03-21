@@ -9,13 +9,15 @@ import './styles/styles.scss';
 
 import FeedContainer from './containers/FeedContainer.jsx';
 import LoginContainer from './containers/LoginContainer.jsx';
+import SignupContainer from './containers/SignupContainer.jsx';
 
 export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/FIXMELATER' element={ <LoginContainer/> } />
-        <Route exact path='/' element={ <FeedContainer/> } />
+        <Route exact path='/' element={ <LoginContainer/> } />
+        <Route exact path='/feed' element={ <FeedContainer/> } />
+        <Route exact path='/signup' element={ <SignupContainer/> } />
       </Routes>
     </BrowserRouter>
   );

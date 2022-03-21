@@ -4,11 +4,14 @@ import { connect } from 'react-redux';
 const CompletedHabit = (props) => {
     const habit = props.habit;
     const completion = habit.completed;
-    const completedNum = <div className='btn-big-minus'>-</div>
+    const completedNum = <div className='btn-big-minus' onClick={decrement}>-</div>
     const completedBool = <div className='btn-big-minus' onClick={uncomplete}>x</div>
 
     function uncomplete() {
         props.uncompleteBool(habit.habitId);
+    }
+    function decrement() {
+        props.decrementNum(habit.habitId);
     }
 
     return (

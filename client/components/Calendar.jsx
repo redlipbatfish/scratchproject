@@ -8,6 +8,9 @@ const Calendar = () => {
 
     const currentMonth = [];
 
+    // Fetch calendar's {calendar: [28]} 
+    
+
     const sampleArr = [
         100,
         100,
@@ -46,15 +49,15 @@ const Calendar = () => {
     const currentDate = new Date();
     const month = monthNames[currentDate.getMonth()];
     let year = '' + currentDate.getFullYear();
-    year = year.slice(2);
+    year = "'" + year.slice(2);
 
-    console.log(month, year);
+    const displayDate = month + ' ' + year;
 
     return (
         <div className='calendar'>
             <div className='squares-wrapper'>
              {currentMonth}
-                <div id='label-month'>April '22</div>
+                <div id='label-month'>{displayDate}</div>
             </div>
         </div>
     );

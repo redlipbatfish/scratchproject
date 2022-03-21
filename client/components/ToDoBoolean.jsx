@@ -6,6 +6,7 @@ const ToDoBoolean = (props) => {
 
     function complete() {
         props.completeBool(habit.habitId);
+        
     }
     
     return (
