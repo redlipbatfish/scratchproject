@@ -7,17 +7,14 @@ const EditHabit = () => {
         <div className='modal-bg'>  
             <div className='modal'>
                 <div className='modal-content'>
-                    <h4 className='modal-title'>Add habit</h4>
+                    <h4 className='modal-title'>Drink water</h4>
                 </div>
                 <div className='modal-body'>
-                    <input list='habits' name='habit-choice' />
-                    <datalist id='habits'>
-                        <option value='Drink water'>Drink water</option>
-                        <option value='Make bed'>Make bed</option>
-                        <option value='Walk dog'>Walk dog</option>
-                        <option value='Sleep on time'>Sleep on time</option>
-                        <option value='Stretch'>Stretch</option>
-                    </datalist>
+                    <div className='wrapper-editHabit'>
+                        <div className='edit-decrement'>-</div>
+                        <input type='text' className='edit-field'></input>
+                        <div className='edit-increment'>+</div>
+                    </div>
                 </div>
                 <div className='modal-footer'>
                     <button>x</button>

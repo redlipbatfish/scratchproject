@@ -87,11 +87,46 @@ h1 {
   flex-direction: column;
   margin: 15px;
 }
-.habit-name {
-  font-weight: 600;
-  margin-top: 8px;
-  margin-left: 8px;
+// .habit-name {
+//   font-weight: 600;
+//   margin-top: 8px;
+//   margin-left: 8px;
+// }
+
+.wrapper-habit-text {
+  display: flex;
+  justify-content: space-between;
+
+  .todo-text {
+    font-weight: 600;
+    margin: 8px 8px 0 8px;
+  }
+
+  .todo-text {
+    font-weight: 600;
+    margin: 8px 8px 0 8px;
+  }
 }
+.wrapper-editHabit {
+  display: flex;
+  padding: 0px 25px;
+  .edit-field {
+    margin: auto;
+    padding: 5px;
+    width: 100px;
+  }
+  .edit-decrement {
+    background-color: green;
+    flex-grow: 1;
+    border-radius: 5px 0px 0px 5px;
+  }
+  .edit-increment {
+    background-color: green;
+    flex-grow: 1;
+    border-radius: 0px 5px 5px 0px;
+  }
+}
+
 .item-todo {
   background-color: $white;
   border-radius: 5px;
@@ -117,6 +152,7 @@ h1 {
   margin: 5px 5px 5px 5px;
   padding: 3px;
 }
+
 .progressbar {
   background-color: $amazon;
   height: 100%;

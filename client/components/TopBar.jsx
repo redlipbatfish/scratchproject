@@ -5,10 +5,9 @@ import { useNavigate } from 'react-router-dom';
 const TopBar = () => {
     const navigate = useNavigate();
     function logoutClick () {
+        // TODO: add functionality to log out user
         navigate('/');
     }
-
-
     return (
         <div className="topbar">
             <div id='logo'>H</div>

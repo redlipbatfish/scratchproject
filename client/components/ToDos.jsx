@@ -1,10 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import ToDoNumber from '../components/ToDoNumber.jsx';
+import ToDoBoolean from '../components/ToDoBoolean.jsx';
 
-const ToDo = () => {
+const ToDos = (props) => {
+    const state = props.habits;
+    const todoList = [];
+    for (let habit of state.habits) {
+        if (habit.completed === false) {
+            if (habit.type === 'number') todoList.push(<ToDoNumber incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
+            if (habit.type === 'boolean') todoList.push(<ToDoBoolean completeBool={props.completeBool} habit={habit} />)
+        }
+    }
+    
     return (
         <div className='wrapper-todo'>
-            <div className='item-todo'>
+            {todoList} 
+        </div>
+    );
+};
+
+export default ToDos;
+
+{/* <div className='item-todo'>
                 <div className='habit-name'>
                     Drink water
                 </div>
@@ -44,9 +62,4 @@ const ToDo = () => {
                         <div className='btn-check'>	&#10003;</div>
                     </div>
                 </div>
-            </div>
-        </div>
-    );
-};
-
-export default ToDo;
+            </div> */}

@@ -14,8 +14,8 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={ <LoginContainer/> } />
-        <Route exact path='/feed' element={ <FeedContainer/> } />
+        <Route exact path='/FIXMELATER' element={ <LoginContainer/> } />
+        <Route exact path='/' element={ <FeedContainer/> } />
       </Routes>
     </BrowserRouter>
   );
