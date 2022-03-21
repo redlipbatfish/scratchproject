@@ -12,7 +12,7 @@ const ToDoBoolean = (props) => {
         <div className='item-todo'>
             <div className='wrapper-habit-text'>
                 <div className='habit-name habit-text'>{habit.habit}</div>
-                <div className='habit-status habit-text'>incomplete</div>
+                <div className='habit-status habit-text'>Incomplete</div>
             </div>
             <div className='progress-container'>
                 <div className='wrapper-progressbar'>

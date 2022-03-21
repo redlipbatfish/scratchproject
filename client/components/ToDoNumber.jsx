@@ -6,18 +6,22 @@ const ToDoNumber = (props) => {
     const percentage = Math.floor(100 * habit.status / habit.goal);
 
     function increment() {
-        props.incrementNum(habit.habitId);
-        console.log(habit.status, habit.goal);
+        if (habit.status < habit.goal) {
+            props.incrementNum(habit.habitId);
+            console.log(habit.status, habit.goal);
+        }
     }
     function decrement() {
-        props.decrementNum(habit.habitId);
+        if (habit.status > 0) {
+            props.decrementNum(habit.habitId);
+        }
     }
     
     return (
         <div className='item-todo'>
             <div className='wrapper-habit-text'>
                 <div className='habit-name habit-text'>{habit.habit}</div>
-                <div className='habit-status habit-text'>incomplete</div>
+                <div className='habit-status habit-text'>{`${habit.status} / ${habit.goal}`}</div>
             </div>
             <div className='progress-container'>
                 <div className='wrapper-progressbar'>

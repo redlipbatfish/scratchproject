@@ -81,8 +81,8 @@ const habitsReducer = (state = initialState, action) => {
 
         // increment the status for the target habit, if this completes habit change to completed
         if (habits[i].habitId === action.payload ) {
-          if (habits[i].status >= habits[i].goal) habits[i].completed = true;
-          if (habits[i].status ) ++habits[i].status;
+          if (habits[i].status === habits[i].goal) habits[i].completed = true;
+          if (habits[i].status) habits[i].status++;
         }
       }
 

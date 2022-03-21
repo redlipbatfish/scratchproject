@@ -97,16 +97,20 @@ h1 {
   display: flex;
   justify-content: space-between;
 
-  .todo-text {
+  .habit-text {
     font-weight: 600;
     margin: 8px 8px 0 8px;
   }
 
-  .todo-text {
-    font-weight: 600;
-    margin: 8px 8px 0 8px;
+  .habit-status {
+    color: darken($white, 25%);
+  }
+
+  .completed {
+    font-weight: 400 !important;
   }
 }
+
 .wrapper-editHabit {
   display: flex;
   padding: 0px 25px;

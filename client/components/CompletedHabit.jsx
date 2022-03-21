@@ -15,6 +15,7 @@ const CompletedHabit = (props) => {
         <div className='item-done'>
             <div className='wrapper-habit-text'>
                 <div className='habit-name habit-text'>{habit.habit}</div>
+                <div className='habit-status habit-text completed'>Completed</div>
             </div>
             <div className='progress-container'>
                 <div className='wrapper-progressbar'>
