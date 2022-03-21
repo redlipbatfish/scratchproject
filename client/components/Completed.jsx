@@ -12,8 +12,12 @@ const Completed = (props) => {
         }
     }
 
+    const editHabit = () => {
+        props.showModalEdit();
+    }
+
     return (
-        <div className='wrapper-todo'>
+        <div className='wrapper-todo' onClick={editHabit}>
             {completedList}
         </div>
     );

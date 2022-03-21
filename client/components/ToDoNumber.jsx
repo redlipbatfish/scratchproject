@@ -16,7 +16,9 @@ const ToDoNumber = (props) => {
             // add PUT req to backend
         }
     }
-    
+    const editHabit = () => {
+        props.show();
+    }
     return (
         <div className='item-todo'>
             <div className='wrapper-habit-text'>
@@ -24,7 +26,7 @@ const ToDoNumber = (props) => {
                 <div className='habit-status habit-text'>{`${habit.status} / ${habit.goal}`}</div>
             </div>
             <div className='progress-container'>
-                <div className='wrapper-progressbar'>
+                <div className='wrapper-progressbar' onClick={editHabit}>
                     <div className='progressbar' style={{width: `${percentage}%`}}></div>
                 </div>
                 <div className='wrapper-btns'>

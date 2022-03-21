@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
-const TopBar = () => {
+const TopBar = (props) => {
     const navigate = useNavigate();
 
     function logoutClick () {
@@ -12,7 +12,6 @@ const TopBar = () => {
     }
     function addHabit () {
         props.showModalAdd();
-        console.log('success');
     }
     return (
         <div className="topbar">

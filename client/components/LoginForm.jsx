@@ -3,8 +3,9 @@ import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 // import { link } from 'react-router-dom';
 
-const LoginForm = () => {
+const LoginForm = (props) => {
   const navigate = useNavigate();
+  
   function submitForm () {
     const email = document.querySelector('#username-input').value;
     const password = document.querySelector('#password-input').value;
@@ -13,18 +14,39 @@ const LoginForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password})
     }
-    //navigate('/feed');
+    
+    console.log('here', props.getFeed)
     fetch('http://localhost:3000/login', reqOptions)
     .then(res => {
-      // console.log(res.status) //400 if incorrect user/pw
       return res.json()
     })
     .then((authStatus) => {
       console.log("-----",authStatus)
-      if (authStatus.userid)navigate('/feed');
-     })
-    
-  }
+      if (authStatus.userid){
+        // get state data from db
+        // post a new request 
+        const req= 
+        {
+          method: 'POST',
+         headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ "userId": authStatus.userid}),
+        }
+        
+        fetch('http://localhost:3000/feed', req)
+        .then(res => {
+          // console.log(JSON.parse(res))
+          return res.json()
+        }).then(data=> {
+          console.log(data);
+          props.getFeed(data);
+          navigate('/feed');
+          }
+        )
+
+      } // to close 25
+
+    })  // to close 23
+  } // to close 9
 
   function signupForm () {
     navigate('/signup');

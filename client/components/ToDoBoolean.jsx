@@ -9,20 +9,23 @@ const ToDoBoolean = (props) => {
         
     }
     
+    const editHabit = () => {
+        props.show();
+    }
+
     return (
         <div className='item-todo'>
             <div className='wrapper-habit-text'>
                 <div className='habit-name habit-text'>{habit.habit}</div>
                 <div className='habit-status habit-text'>Incomplete</div>
             </div>
-            <div className='progress-container'>
-                <div className='wrapper-progressbar'>
+            <div className='progress-container'></div>
+                <div className='wrapper-progressbar' onClick={editHabit}>
                     <div className='progressbar' style={{width: "0%"}}></div>
                 </div>
                 <div className='wrapper-btns'>
                     <div className='btn-check' onClick={complete}>	&#10003;</div>
                 </div>
-            </div>
         </div>
     );
 };

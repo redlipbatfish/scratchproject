@@ -32,11 +32,14 @@ const EditHabit = (props) => {
         return null;
     }
 
+    const closeModal = () => {
+        props.show();
+    }
     return (
         <div className='modal-bg'>  
             <div className='modal'>
-                    <div className='modal-close'>X</div>
-                <div className='modal-content'>
+                    <div className='modal-close' onClick={closeModal}>X</div>
+                <div className='modal-content'></div>
                     <h3 className='modal-title'>Drink water</h3>
                 </div>
                 <div className='modal-body'>
@@ -54,7 +57,6 @@ const EditHabit = (props) => {
                         Delete habit
                     </div>
                 </div>
-            </div>
         </div>
     )
 };

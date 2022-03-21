@@ -8,8 +8,8 @@ const ToDos = (props) => {
     const todoList = [];
     for (let habit of state.habits) {
         if (habit.completed === false) {
-            if (habit.type === 'number') todoList.push(<ToDoNumber incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
-            if (habit.type === 'boolean') todoList.push(<ToDoBoolean completeBool={props.completeBool} habit={habit} />)
+            if (habit.type === 'number') todoList.push(<ToDoNumber show={props.show} incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
+            if (habit.type === 'boolean') todoList.push(<ToDoBoolean show={props.show} completeBool={props.completeBool} habit={habit} />)
         }
     }
     

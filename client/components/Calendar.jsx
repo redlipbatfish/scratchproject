@@ -6,7 +6,7 @@ const Calendar = () => {
     const sixtySixTo99 = <div className='square yellow-green'></div>
     const thirtyThreeTo65 =  <div className='square beige'></div>
 
-    // let currentMonth;
+    let currentMonth = [];
 
     // Fetch calendar's {calendar: [28]} 
     /*

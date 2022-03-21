@@ -35,12 +35,12 @@ class FeedContainer extends Component {
     render() {
         return(
             <div>
-                {/* <AddHabit show={this.props.habits.showModalAdd} habits={this.props.habits}/>
+                <AddHabit show={this.props.habits.showModalAdd} hideModalAdd={this.props.hideModalAdd} habits={this.props.habits}/>
                 <EditHabit show={this.props.habits.showModalEdit} habits={this.props.habits}/>
-                <TopBar showModalAdd={this.props.showModalAdd} hideModalAdd={this.props.hideModalAdd}/>
+                <TopBar showModalAdd={this.props.showModalAdd}/>
                 <Calendar/>
-                <ToDos completeBool={this.props.completeBoolHabit} incrementNum={this.props.incrementNumHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>
-                <Completed uncompleteBool={this.props.uncompleteBoolHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/> */}
+                <ToDos show={this.props.showModalEdit} completeBool={this.props.completeBoolHabit} incrementNum={this.props.incrementNumHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>
+                <Completed show={this.props.showModalEdit} uncompleteBool={this.props.uncompleteBoolHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>
             </div>
         )
     };

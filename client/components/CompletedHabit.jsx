@@ -14,8 +14,12 @@ const CompletedHabit = (props) => {
         props.decrementNum(habit.habitId);
     }
 
+    function editHabit() {
+        props.showModalEdit();
+    }
+
     return (
-        <div className='item-done'>
+        <div className='item-done' onClick={editHabit}>
             <div className='wrapper-habit-text'>
                 <div className='habit-name habit-text'>{habit.habit}</div>
                 <div className='habit-status habit-text completed'>Completed</div>
