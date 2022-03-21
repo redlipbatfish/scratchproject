@@ -11,8 +11,7 @@ class SignupContainer extends Component {
   render () {
     return (
       <div>
-        TEST
-        {/* <SignupForm /> */}
+        <SignupForm />
       </div>
     );
   }

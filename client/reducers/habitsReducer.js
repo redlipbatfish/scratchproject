@@ -34,12 +34,18 @@ const initialState = {
       goal: 5,
       completed: false }
   ],
-  calendar: []
+  calendar: [],
+  showModalAdd: false,
+  showModalEdit: false
 }
 
 const habitsReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.LOGIN_USER: {
+
+    }
+
+    case types.GET_FEED: {
 
     }
 
@@ -101,14 +107,44 @@ const habitsReducer = (state = initialState, action) => {
           if (habits[i].status > 0) habits[i].status--;
         }
       }
-
+        return {
+          ...state,
+          habits,
+        };
+      }
+      
+    case types.SHOW_MODAL_ADD: {
+      let showModalAdd = true;
 
       return {
         ...state,
-        habits
-      };
+        showModalAdd
+      }
     }
-
+    case types.HIDE_MODAL_ADD: {
+      let showModalAdd = false;
+      
+      return {
+        ...state,
+        showModalAdd
+      }
+    }
+    case types.SHOW_MODAL_EDIT: {
+      let showModalEdit = true;
+      
+      return {
+        ...state,
+        showModalEdit
+      }
+    }
+    case types.HIDE_MODAL_EDIT: {
+      let showModalEdit = false;
+      
+      return {
+        ...state,
+        showModalEdit
+      }
+    }
     default: {
       return state;
     }
@@ -116,28 +152,3 @@ const habitsReducer = (state = initialState, action) => {
 }
 
 export default habitsReducer;
-
-
-// case types.ADD_CARD: {
-//   const totalCards = state.totalCards + 1;
-//   // make a deep copy of marketList called newMarketList
-//   const marketList = [];
-//   for (let i = 0; i < state.marketList.length; i++ ) {
-//     const newObj = {...state.marketList[i]};
-//     marketList.push(newObj);
-   
-//     if (marketList[i].marketId === action.payload) {
-//       marketList[i].cards += 1;
-//     }
-//   }
-
-//   for (let i = 0; i < state.marketList.length; i++){
-//     marketList[i].perOfTot = (marketList[i].cards / totalCards) * 100 || 0;
-//   }
-//   // find the index of the element that contains the ID of our action payload
-//   // update the totalCards at the specified elements marketID
-//   return {
-//     ...state,
-//     marketList,
-//     totalCards,
-//   };

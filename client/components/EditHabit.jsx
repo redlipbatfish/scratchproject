@@ -28,7 +28,9 @@ const EditHabit = (props) => {
     //         // fetch('http://localhost:3000/edithabit/update', reqOptions).then(response => response.json()).then(data => console.log(data))
     //     }
     // }
-
+    if (!props.show) {
+        return null;
+    }
 
     return (
         <div className='modal-bg'>  

@@ -9,8 +9,7 @@ const App = () => {
 
   return (
     <div>
-      {/* <LoginContainer /> */}
-      <FeedContainer />
+      {/* <FeedContainer /> */}
     </div>
   );
 };

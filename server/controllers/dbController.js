@@ -181,6 +181,20 @@ dbController.updateRecord = async (req, res, next) => {
     userId,
     habitId,
   ]);
+
+
+  // let newDailyPercent = (Sum all fullfilled_percent from UHR) / number of habits on selected date
+  // const getAllPercent
+  
+  // const updateDailyPercentQuery = `
+  //   UPDATE daily_count
+  //   SET total_percent = $1
+  //   WHERE user_id = $2 AND date=(SELECT CURRENT_DATE)
+  // `
+  // const updateDailyPercent = await db.query(updateDailyPercentQuery, [newDailyPercent, userId])
+ 
+
+
   return next();
 };
 

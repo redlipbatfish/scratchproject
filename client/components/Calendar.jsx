@@ -6,10 +6,21 @@ const Calendar = () => {
     const sixtySixTo99 = <div className='square yellow-green'></div>
     const thirtyThreeTo65 =  <div className='square beige'></div>
 
-    const currentMonth = [];
+    // let currentMonth;
 
     // Fetch calendar's {calendar: [28]} 
-    
+    /*
+    const getCalendarArr = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/feed');
+            const  data = await response.json();
+            currentMonth = data.calendar;
+        } catch(error) {
+            console.error(error.message)
+        }
+    }
+    */
+
 
     const sampleArr = [
         100,

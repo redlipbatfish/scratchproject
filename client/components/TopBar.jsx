@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 const TopBar = () => {
     const navigate = useNavigate();
-    const [show, setShow] = useState(false);
 
     function logoutClick () {
         // TODO: add functionality to log out user
         navigate('/');
     }
     function addHabit () {
-        setShow(true)
+        props.showModalAdd();
+        console.log('success');
     }
     return (
         <div className="topbar">

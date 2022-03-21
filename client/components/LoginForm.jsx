@@ -13,25 +13,34 @@ const LoginForm = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email, password: password})
     }
-    navigate('/feed');
-    // fetch('/login', reqOptions)
-    // .then(res => res.json())
-    // .then((authStatus) => {
-    //   console.log(authStatus)
-    //   window.location = '/feed';
-    // })
+    //navigate('/feed');
+    fetch('http://localhost:3000/login', reqOptions)
+    .then(res => {
+      // console.log(res.status) //400 if incorrect user/pw
+      return res.json()
+    })
+    .then((authStatus) => {
+      console.log("-----",authStatus)
+      if (authStatus.userid)navigate('/feed');
+     })
+    
   }
+
+  function signupForm () {
+    navigate('/signup');
+  }
+
   return (
     <div id='login-form'>
       <h1>Habitual</h1>
       {/* <Link to="/feed">About</Link> */}
       <div className='wrapper-login'>
-        <input type='text' className='login-input' id='username-input' name='username-input' placeholder='Enter Email' />
-        <input type='password' className='login-input' id='password-input' name='password-input' placeholder='Enter Password' />
+        <input autoComplete="off" type='text' className='login-input' id='username-input' name='username-input' placeholder='Email' />
+        <input autoComplete="off" type='password' className='login-input' id='password-input' name='password-input' placeholder='Password' />
         <button className='login-btn' id='login-btn'
           onClick={submitForm}
         >Login</button>
-        <div className='login-link' id='signup-btn'>Don't have an account? <br></br>Signup</div>
+        <div className='login-link' id='signup-btn' onClick={signupForm}>Don't have an account? <br></br>Signup</div>
       </div>
     </div>
   );

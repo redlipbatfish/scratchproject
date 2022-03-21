@@ -16,9 +16,9 @@ const AddHabit = (props) => {
     //         targetNum: selectedTarget,
     //     })
     // }
-    // if (!props.show) {
-    //     return null;
-    // }
+    if (!props.show) {
+        return null;
+    }
 
     return (
         <div className='modal-bg'>  

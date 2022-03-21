@@ -19,7 +19,11 @@ const mapDispatchToProps = (dispatch) => {
         incrementNumHabit: (habitId) => dispatch(actions.incrementNumHabitActionCreator(habitId)),
         decrementNumHabit: (habitId) => dispatch(actions.decrementNumHabitActionCreator(habitId)),
         completeBoolHabit: (habitId) => dispatch(actions.completeBoolHabitActionCreator(habitId)),
-        uncompleteBoolHabit: (habitId) => dispatch(actions.uncompleteBoolHabitActionCreator(habitId))
+        uncompleteBoolHabit: (habitId) => dispatch(actions.uncompleteBoolHabitActionCreator(habitId)),
+        showModalAdd: (show) => dispatch(actions.showModalAddActionCreator(show)),
+        hideModalAdd: (show) => dispatch(actions.hideModalAddActionCreator(show)),
+        showModalEdit: (show) => dispatch(actions.showModalEditActionCreator(show)),
+        hideModalEdit: (show) => dispatch(actions.hideModalEditActionCreator(show))
     }
 };
 
@@ -31,12 +35,12 @@ class FeedContainer extends Component {
     render() {
         return(
             <div>
-                {/* <EditHabit /> */}
-                {/* <AddHabit /> */}
-                <TopBar/>
+                {/* <AddHabit show={this.props.habits.showModalAdd} habits={this.props.habits}/>
+                <EditHabit show={this.props.habits.showModalEdit} habits={this.props.habits}/>
+                <TopBar showModalAdd={this.props.showModalAdd} hideModalAdd={this.props.hideModalAdd}/>
                 <Calendar/>
                 <ToDos completeBool={this.props.completeBoolHabit} incrementNum={this.props.incrementNumHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>
-                <Completed uncompleteBool={this.props.uncompleteBoolHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>
+                <Completed uncompleteBool={this.props.uncompleteBoolHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/> */}
             </div>
         )
     };

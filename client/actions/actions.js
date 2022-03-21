@@ -5,6 +5,12 @@ export const loginUserActionCreator = userId => ({
   payload: userId,
 });
 
+export const getFeedActionCreator = userId => ({
+  type: types.GET_FEED,
+  payload: userId,
+});
+
+
 export const logoutUserActionCreator = () => ({
   type: types.LOGOUT_USER,
 });
@@ -38,3 +44,20 @@ export const decrementNumHabitActionCreator = habitId => ({
   type: types.DECREMENT_NUM_HABIT,
   payload: habitId,
 });
+
+export const showModalAddActionCreator = show => ({
+  type: types.SHOW_MODAL_ADD,
+  payload: show,
+})
+export const hideModalAddActionCreator = show => ({
+  type: types.HIDE_MODAL_ADD,
+  payload: show,
+})
+export const showModalEditActionCreator = show => ({
+  type: types.SHOW_MODAL_EDIT,
+  payload: show,
+})
+export const hideModalEditActionCreator = show => ({
+  type: types.HIDE_MODAL_EDIT,
+  payload: show,
+})
