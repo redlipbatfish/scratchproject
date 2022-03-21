@@ -1,6 +1,6 @@
 const userController = {};
 
-// Extract data from sign up -> save into obj
+// Rextract and save new user's account info from frontend into res.locals
 userController.addUser = (req, res, next) => {
   const userProps = ['firstName', 'lastName', 'username', 'email', 'password'];
   res.locals.newUser = {};
@@ -19,7 +19,7 @@ userController.addUser = (req, res, next) => {
   return next();
 };
 
-// Extract data from login -> save into obj
+// Extract user email/pw from frontent, and store into res.locals
 userController.checkUser = (req, res, next) => {
   const userProps = ['email', 'password'];
   res.locals.loginUser = {};

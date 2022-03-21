@@ -1,6 +1,5 @@
 const express = require('express');
 const dbController = require('../controllers/dbController');
-const habitController = require('../controllers/habitController');
 const userController = require('../controllers/userController');
 
 const router = express.Router();
@@ -11,6 +10,7 @@ router.get(
   userController.checkUser,
   dbController.checkUser,
   (req, res) => {
+    // frontend receives and store userId in redux
     return res.status(200).json(res.locals.userId);
   }
 );

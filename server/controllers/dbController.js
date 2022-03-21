@@ -1,7 +1,7 @@
 const dbController = {};
 const db = require('../models/dbModels');
 
-// Create User (post)
+// Store new user's account info into Databse
 dbController.saveUser = async (req, res, next) => {
   const { firstName, lastName, username, email, password } = res.locals.newUser;
   params = [firstName, lastName, username, email, password];
@@ -25,7 +25,7 @@ dbController.saveUser = async (req, res, next) => {
   }
 };
 
-// Check user's info in request matches db (get)
+// Validate matching user info from frontend and database
 dbController.checkUser = async (req, res, next) => {
   // res.locals.loginUser
   const { email, password } = res.locals.loginUser;
@@ -62,12 +62,13 @@ dbController.checkUser = async (req, res, next) => {
 dbController.getUserInfo = async (req, res, next) => {
   const userId = res.locals.userId;
 
-  // Get Calendar Data
+  // Get Calendar current date and its the past 27 days
   const calendarQuery = `
       SELECT total_percent, date FROM daily_count
       WHERE user_id=$1 AND date BETWEEN (SELECT CURRENT_DATE)-integer'27' AND (SELECT CURRENT_DATE)
       ORDER BY date;
         `;
+  // Populate calendarArray with 28 days
   const habitRecord = await db.query(calendarQuery, [userId]);
   res.locals.calendarReocrd = [];
   for (let i = 0; i < 28 - habitRecord.rows.length; i++) {
@@ -90,6 +91,8 @@ dbController.getUserInfo = async (req, res, next) => {
   //       LEFT OUTER JOIN user_habits uh ON uh.habit_id = uhr.habit_id
   //       WHERE user_id=$1 AND date=(SELECT CURRENT_DATE);
   //       `;
+
+  // Retrieve today's habit progress
   const todayRecordQuery = `
         SELECT user_id, habit_id, fullfilled_percent, habit_name
         FROM user_habit_records uhr
@@ -98,6 +101,7 @@ dbController.getUserInfo = async (req, res, next) => {
   const todayRecord = await db.query(todayRecordQuery, [userId]);
   res.locals.todayHabit = [];
 
+  // Extract data from database and store into habit
   for (let row of todayRecord.rows) {
     const habit = [];
     habit.push(row.habit_id);
