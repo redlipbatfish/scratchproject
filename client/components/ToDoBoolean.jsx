@@ -2,10 +2,9 @@ import React from 'react';
 
 const ToDoBoolean = (props) => {
     const habit = props.habit;
-    const completion = habit.completed;
 
     function complete() {
-        props.completeBool(habit.habitId);
+        props.completeBool(habit[0]);
         
     }
     
@@ -16,16 +15,17 @@ const ToDoBoolean = (props) => {
     return (
         <div className='item-todo'>
             <div className='wrapper-habit-text'>
-                <div className='habit-name habit-text'>{habit.habit}</div>
+                <div className='habit-name habit-text'>{habit[1]}</div>
                 <div className='habit-status habit-text'>Incomplete</div>
             </div>
-            <div className='progress-container'></div>
-                <div className='wrapper-progressbar' onClick={editHabit}>
+            <div className='progress-container'>
+                <div className='wrapper-progressbar' onClick={()=>{}}>
                     <div className='progressbar' style={{width: "0%"}}></div>
                 </div>
                 <div className='wrapper-btns'>
-                    <div className='btn-check' onClick={complete}>	&#10003;</div>
+                    <div className='btn-check' onClick={()=>{}}>	&#10003;</div>
                 </div>
+            </div>
         </div>
     );
 };

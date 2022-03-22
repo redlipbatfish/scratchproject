@@ -11,7 +11,8 @@ import EditHabit from '../components/EditHabit.jsx';
 
 // TODO: add calendar
 const mapStateToProps = state => ({
-    habits: state.habits
+    todayHabit: state.habits.todayHabit,
+    calendar: state.habits.calendar
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -32,15 +33,33 @@ class FeedContainer extends Component {
     constructor(props) {
         super(props)
     }
+    
     render() {
+        console.log('calendar', this.props) 
         return(
             <div>
-                <AddHabit show={this.props.habits.showModalAdd} hideModalAdd={this.props.hideModalAdd} habits={this.props.habits}/>
-                <EditHabit show={this.props.habits.showModalEdit} habits={this.props.habits}/>
-                <TopBar showModalAdd={this.props.showModalAdd}/>
-                <Calendar/>
-                <ToDos show={this.props.showModalEdit} completeBool={this.props.completeBoolHabit} incrementNum={this.props.incrementNumHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>
-                <Completed show={this.props.showModalEdit} uncompleteBool={this.props.uncompleteBoolHabit} decrementNum={this.props.decrementNumHabit} habits={this.props.habits}/>
+                {/* <AddHabit 
+                    show={this.props.showModalAdd}
+                    hideModalAdd={this.props.hideModalAdd} 
+                    habits={this.props.habits}/> */}
+                {/* <EditHabit 
+                    show={this.props.showModalEdit} 
+                    habits={this.props.todayHabit}/> */}
+                <TopBar 
+                    showModalAdd={this.props.showModalAdd}/>
+                <Calendar 
+                    calendarData={this.props.calendar}/>
+                <ToDos 
+                    show={this.props.showModalEdit} 
+                    completeBool={this.props.completeBoolHabit} 
+                    incrementNum={this.props.incrementNumHabit} 
+                    decrementNum={this.props.decrementNumHabit} 
+                    todayHabit={this.props.todayHabit}/>
+                {/* <Completed 
+                    show={this.props.showModalEdit} 
+                    uncompleteBool={this.props.uncompleteBoolHabit} 
+                    decrementNum={this.props.decrementNumHabit} 
+                    todayHabit={this.props.todayHabit}/> */}
             </div>
         )
     };

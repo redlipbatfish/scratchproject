@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 
 const EditHabit = (props) => {
-    const state = props.habits;
-
     // const reqOptions = {
     //     method: 'PUT',
     //     headers: { 'Content-Type': 'application/json'},

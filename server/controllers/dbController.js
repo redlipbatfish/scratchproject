@@ -114,9 +114,10 @@ dbController.getUserInfo = async (req, res, next) => {
     const targetNum = await db.query(targetQuery, [row.user_id, row.habit_id]);
     habit.push(targetNum.rows[0].target_num);
 
-    if (row.fullfilled_percent != 0 || row.fullfilled_percent != 1)
-      habit.push(1);
-    else habit.push(row.fullfilled_percent);
+    // if (row.fullfilled_percent != 0 || row.fullfilled_percent != 1)
+    //   habit.push(1);
+    // else 
+    habit.push(row.fullfilled_percent);
     res.locals.todayHabit.push(habit);
   }
   return next();

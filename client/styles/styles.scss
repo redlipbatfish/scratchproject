@@ -306,6 +306,9 @@ h1 {
     text-decoration: underline;
     margin-top: -5px;
 }
+#logo:hover {
+    cursor:default;
+}
 #add-hbt {
     padding: 5px;
     font-family: Arial, Helvetica, sans-serif;

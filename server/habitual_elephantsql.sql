@@ -132,3 +132,9 @@ VALUES
 
 ----Change server timezone
 ALTER DATABASE fliqwumy SET timezone TO 'US/Pacific';
+
+
+----Add new rows for presentation
+INSERT INTO user_habit_records (user_id, habit_id, date, fullfilled_percent)
+VALUES (1, 3, '2022-03-21', 0.01),(1, 2, '2022-03-21', 0.41),
+(2, 5, '2022-03-21', 0.65),(2, 4, '2022-03-21', 0.59)

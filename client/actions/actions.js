@@ -5,9 +5,9 @@ export const loginUserActionCreator = userId => ({
   payload: userId,
 });
 
-export const getFeedActionCreator = userId => ({
+export const getFeedActionCreator = data => ({
   type: types.GET_FEED,
-  payload: userId,
+  payload: data,
 });
 
 

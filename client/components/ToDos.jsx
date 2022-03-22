@@ -4,12 +4,16 @@ import ToDoNumber from '../components/ToDoNumber.jsx';
 import ToDoBoolean from '../components/ToDoBoolean.jsx';
 
 const ToDos = (props) => {
-    const state = props.habits;
+    console.log("below is props");
+    console.log("todo is ",props);
+    const todayHabit = props.todayHabit;
     const todoList = [];
-    for (let habit of state.habits) {
-        if (habit.completed === false) {
-            if (habit.type === 'number') todoList.push(<ToDoNumber show={props.show} incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
-            if (habit.type === 'boolean') todoList.push(<ToDoBoolean show={props.show} completeBool={props.completeBool} habit={habit} />)
+
+    for (let habit of todayHabit) {
+        console.log(habit);
+        if (habit[3] !== 1) {
+            if (habit[2] !== null) todoList.push(<ToDoNumber show={props.show} incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
+            else todoList.push(<ToDoBoolean show={props.show} completeBool={props.completeBool} habit={habit} />)
         }
     }
     

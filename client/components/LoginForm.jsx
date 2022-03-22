@@ -37,8 +37,8 @@ const LoginForm = (props) => {
           // console.log(JSON.parse(res))
           return res.json()
         }).then(data=> {
-          console.log(data);
-          props.getFeed(data);
+          // console.log(data);
+          props.getFeed({...data, "userId": authStatus.userid});
           navigate('/feed');
           }
         )

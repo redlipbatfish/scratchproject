@@ -1,18 +1,19 @@
 import React from 'react';
 
 const ToDoNumber = (props) => {
+    console.log("Todonumber", props);
     const habit = props.habit;
-    const percentage = Math.floor(100 * habit.status / habit.goal);
+    const percentage = habit[3];
 
     function increment() {
         if (habit.status < habit.goal) {
-            props.incrementNum(habit.habitId);
+            props.incrementNum(habit[0]);
             //add PUT req to backend
         }
     }
     function decrement() {
         if (habit.status > 0) {
-            props.decrementNum(habit.habitId);
+            props.decrementNum(habit[0]);
             // add PUT req to backend
         }
     }
@@ -22,11 +23,11 @@ const ToDoNumber = (props) => {
     return (
         <div className='item-todo'>
             <div className='wrapper-habit-text'>
-                <div className='habit-name habit-text'>{habit.habit}</div>
-                <div className='habit-status habit-text'>{`${habit.status} / ${habit.goal}`}</div>
+                <div className='habit-name habit-text'>{habit[1]}</div>
+                {/* <div className='habit-status habit-text'>{`${habit.status} / ${habit.goal}`}</div> */}
             </div>
             <div className='progress-container'>
-                <div className='wrapper-progressbar' onClick={editHabit}>
+                <div className='wrapper-progressbar' onClick={()=>{}}>
                     <div className='progressbar' style={{width: `${percentage}%`}}></div>
                 </div>
                 <div className='wrapper-btns'>

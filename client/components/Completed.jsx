@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CompletedHabit from '../components/CompletedHabit.jsx';
 
 const Completed = (props) => {
+    // console.log('completed props', props)
     const state = props.habits;
     const completedList = [];
     for (let habit of state.habits) {
