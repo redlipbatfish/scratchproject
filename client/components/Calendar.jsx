@@ -14,8 +14,9 @@ const Calendar = (props) => {
   "July", "August", "September", "October", "November", "December"
 ];
 
-    // for (let avg in res.calendar) {
-    for (let avg of monthData) {
+    // check if they have calendar days
+    if(monthData){
+            for (let avg of monthData) {
         avg = Math.floor(avg * 100);
         if (avg === 100) {currentMonth.push(hundred);}
         if (avg >= 66 && avg <= 99) currentMonth.push(sixtySixTo99);
@@ -37,6 +38,17 @@ const Calendar = (props) => {
             </div>
         </div>
     );
+    }
+    else {
+        return(
+            <div>
+                <h1 >No DATA</h1>
+            </div>
+        )
+    }
+
+    // for (let avg in res.calendar) {
+
 };
 
 export default Calendar;

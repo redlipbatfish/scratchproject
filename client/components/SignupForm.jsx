@@ -10,12 +10,27 @@ const SignupForm = () => {
   }
 
   function signupFunc () {
-    const firstname = document.querySelector('#firstname-input').value;
-    const lastname = document.querySelector('#lastname-input').value;
+    const firstName = document.querySelector('#firstname-input').value;
+    const lastName = document.querySelector('#lastname-input').value;
     const username = document.querySelector('#username-input').value;
     const email = document.querySelector('#email-input').value;
     const password = document.querySelector('#password-input').value;
 
+    const userInfo = {
+      firstName,
+      lastName,
+      username,
+      email,
+      password,
+    }
+
+    fetch('/db/signup',{
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userInfo)
+    })
+    .then( data => data.json())
+    .then( data => console.log(data))
     // CHANGE ME TO DO THIS ON SUCCESSFUL USER CREATION
     if (true) {
       navigate('/feed')

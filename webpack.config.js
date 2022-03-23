@@ -33,6 +33,20 @@ module.exports = {
       },
     ]
   },
+  devServer: {
+    host: 'localhost',
+    port: 8080,
+    hot: true,
+    historyApiFallback: true,
+    static: {
+      directory: path.resolve(__dirname, '/client'),
+    },
+    proxy : {
+      '/db' : 'http://localhost:3000'
+      
+    },
+
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'client', 'index.html'),

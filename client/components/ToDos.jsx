@@ -3,28 +3,41 @@ import { connect } from 'react-redux';
 import ToDoNumber from '../components/ToDoNumber.jsx';
 import ToDoBoolean from '../components/ToDoBoolean.jsx';
 
+import './../styles/styles.scss'
+
 const ToDos = (props) => {
-    console.log("below is props");
-    console.log("todo is ",props);
+
     const todayHabit = props.todayHabit;
     const todoList = [];
 
     for (let habit of todayHabit) {
         console.log(habit);
+        // check if status of habit is not 1
         if (habit[3] !== 1) {
+            // check if type of habit is not null
             if (habit[2] !== null) todoList.push(<ToDoNumber show={props.show} incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
             else todoList.push(<ToDoBoolean show={props.show} completeBool={props.completeBool} habit={habit} />)
         }
     }
     
+    function addHabit () {
+        props.showModalAdd();
+    }
+
     return (
         <div className='wrapper-todo'>
+            <div id='addHabitButton'>
+                <button id='add-hbt' onClick={addHabit}><span id="plus-icon">+&nbsp;</span>&nbsp;Add habit</button>
+            </div>
+            
             {todoList} 
         </div>
     );
 };
 
 export default ToDos;
+
+//       <button id='add-hbt' onClick={addHabit}><span id="plus-icon">+&nbsp;</span>&nbsp;Add habit</button>
 
 {/* <div className='item-todo'>
                 <div className='habit-name'>

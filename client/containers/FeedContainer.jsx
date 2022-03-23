@@ -54,7 +54,9 @@ class FeedContainer extends Component {
                     completeBool={this.props.completeBoolHabit} 
                     incrementNum={this.props.incrementNumHabit} 
                     decrementNum={this.props.decrementNumHabit} 
-                    todayHabit={this.props.todayHabit}/>
+                    todayHabit={this.props.todayHabit}
+                    showModalAdd={this.props.showModalAdd}
+                    />
                 {/* <Completed 
                     show={this.props.showModalEdit} 
                     uncompleteBool={this.props.uncompleteBoolHabit} 

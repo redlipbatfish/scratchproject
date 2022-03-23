@@ -27,10 +27,10 @@ app.get('/', (req, res) => {
 });
 
 // Define Routes Handler
-app.use('/signup', signupRouter);
-app.use('/login', loginRouter);
-app.use('/feed', feedRouter);
-app.use('/edithabit', edithabitRouter);
+app.use('/db/signup', signupRouter);
+app.use('/db/login', loginRouter);
+app.use('/db/feed', feedRouter);
+app.use('/db/edithabit', edithabitRouter);
 
 // Unknown route handler
 app.use((req, res) => res.status(404).send('You are in the wrong place! 😡'));

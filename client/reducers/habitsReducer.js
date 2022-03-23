@@ -2,8 +2,8 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
   userId: null,
-  habits: [
-        { habit: 'Drink water',
+  todayHabit: [
+    { habit: 'Drink water',
       habitId: 1,
       type: 'number',
       status: 1,
@@ -18,7 +18,7 @@ const initialState = {
     {
       habit: "Drink water",
       habitId: 1,
-      isBoolean: false
+      isBoolean: false,
     },
     {
       habit: "Make bed",
@@ -120,27 +120,29 @@ const habitsReducer = (state = initialState, action) => {
     }
 
     case types.INCREMENT_NUM_HABIT: {
+      console.log(state.todayHabit)
       const habits = [];
-      for (let i = 0; i < state.habits.length; i++) {
-        habits.push({...state.habits[i]});
-
+      for (let i = 0; i < state.todayHabit.length; i++) {
+        habits.push({...state.todayHabit[i]});
+  
         // increment the status for the target habit, if this completes habit change to completed
         if (habits[i].habitId === action.payload ) {
-          habits[i].status++;
+ 
+          habits[i].status += 1;
           if (habits[i].status === habits[i].goal) habits[i].completed = true;
         }
       }
 
       return {
         ...state,
-        habits
+        todayHabit : habits,
       };
     }
 
     case types.DECREMENT_NUM_HABIT: {
       const habits = [];
-      for (let i = 0; i < state.habits.length; i++) {
-        habits.push({...state.habits[i]});
+      for (let i = 0; i < state.todayHabit.length; i++) {
+        habits.push({...state.todayHabit[i]});
 
         if (habits[i].habitId === action.payload ) {
           if (habits[i].completed === true) habits[i].completed = false;
@@ -149,7 +151,7 @@ const habitsReducer = (state = initialState, action) => {
       }
         return {
           ...state,
-          habits,
+          todayHabit : habits,
         };
       }
       

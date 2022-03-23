@@ -70,12 +70,13 @@ dbController.getUserInfo = async (req, res, next) => {
         `;
   // Populate calendarArray with 28 days
   const habitRecord = await db.query(calendarQuery, [userId]);
-  res.locals.calendarReocrd = [];
+  res.locals.calendarRecord = [];
   for (let i = 0; i < 28 - habitRecord.rows.length; i++) {
-    res.locals.calendarReocrd.push(0);
+  
+    res.locals.calendarRecord.push(0);
   }
   for (let row of habitRecord.rows) {
-    res.locals.calendarReocrd.push(Number(row.total_percent));
+    res.locals.calendarRecord.push(Number(row.total_percent));
   }
 
   // Get today's habit progress

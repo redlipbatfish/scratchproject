@@ -12,7 +12,7 @@ router.post(
   dbController.getUserInfo,
   (req, res) => {
     return res.status(200).json({
-      calendar: res.locals.calendarReocrd,
+      calendar: res.locals.calendarRecord,
       todayHabit: res.locals.todayHabit,
     });
   }

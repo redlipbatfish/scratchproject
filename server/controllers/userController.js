@@ -26,8 +26,10 @@ userController.checkUser = (req, res, next) => {
 
   for (const prop of userProps) {
     if (!req.body[prop]) {
+      
       return next({
         log: 'UserController.checkUser ERROR: Properties on request body undefined',
+        status: 422,
         message: {
           err: 'UserController.checkUser ERROR: Incorrect data received',
         },

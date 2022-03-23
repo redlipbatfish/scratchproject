@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginForm = (props) => {
   const navigate = useNavigate();
-  
+
+
+
+  // login action
   function submitForm () {
     const email = document.querySelector('#username-input').value;
     const password = document.querySelector('#password-input').value;
@@ -15,8 +18,8 @@ const LoginForm = (props) => {
       body: JSON.stringify({ email: email, password: password})
     }
     
-    console.log('here', props.getFeed)
-    fetch('http://localhost:3000/login', reqOptions)
+    //onsole.log('here', props.getFeed)
+    fetch('/db/login', reqOptions)
     .then(res => {
       return res.json()
     })
@@ -32,12 +35,13 @@ const LoginForm = (props) => {
           body: JSON.stringify({ "userId": authStatus.userid}),
         }
         
-        fetch('http://localhost:3000/feed', req)
+        fetch('/db/feed', req)
         .then(res => {
           // console.log(JSON.parse(res))
           return res.json()
         }).then(data=> {
-          // console.log(data);
+          console.log('here is the data')
+           console.log(data);
           props.getFeed({...data, "userId": authStatus.userid});
           navigate('/feed');
           }
@@ -69,3 +73,6 @@ const LoginForm = (props) => {
 };
 
 export default LoginForm;
+
+
+// export connect(mapstatetoprops, mapdispatchtoprops)(loginform)
