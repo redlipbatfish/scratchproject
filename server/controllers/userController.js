@@ -19,7 +19,7 @@ userController.addUser = (req, res, next) => {
   return next();
 };
 
-// Extract user email/pw from frontent, and store into res.locals
+// Extract user email/pw from frontend, and store into res.locals
 userController.checkUser = (req, res, next) => {
   const userProps = ['email', 'password'];
   res.locals.loginUser = {};

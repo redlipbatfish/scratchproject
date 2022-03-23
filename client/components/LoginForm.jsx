@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { link } from 'react-router-dom';
+// import { link } from 'react-router-dom'; // What's link?
 
 const LoginForm = (props) => {
-  const navigate = useNavigate();
-
-
-
-  // login action
+  const navigate = useNavigate(); // import from react-router
+  
   function submitForm () {
     const email = document.querySelector('#username-input').value;
     const password = document.querySelector('#password-input').value;
@@ -28,7 +25,7 @@ const LoginForm = (props) => {
       if (authStatus.userid){
         // get state data from db
         // post a new request 
-        const req= 
+        const req = 
         {
           method: 'POST',
          headers: { 'Content-Type': 'application/json' },
