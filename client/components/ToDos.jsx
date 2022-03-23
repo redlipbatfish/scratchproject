@@ -7,10 +7,10 @@ import './../styles/styles.scss'
 
 const ToDos = (props) => {
 
-    const todayHabit = props.todayHabit;
+    const activeHabits = props.activeHabits;
     const todoList = [];
 
-    for (let habit of todayHabit) {
+    for (let habit of activeHabits) {
         console.log(habit);
         // check if status of habit is not 1
         if (habit[3] !== 1) {
