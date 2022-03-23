@@ -126,6 +126,7 @@ dbController.getUserInfo = async (req, res, next) => {
 
 // add a new user-habit pair
 dbController.assignHabit = async (req, res, next) => {
+  console.log('inside dbcontroller')
   // add to user-habits table
   const userId = res.locals.userId;
   const habitId = res.locals.habitId;

@@ -53,9 +53,14 @@ const AddHabit = (props) => {
 
     const habitsList = [] 
     for (let habit of availableHabits) {
+        const habitTest = {
+                boolean: habit.isBoolean,
+                name: habit.habit
+            }
         habitsList.push(
             // <option value={habit.habitId}>{habit.habit}</option>
-            <option id='habitsOption' value={habit.isBoolean} boolean={habit.isBoolean}>{habit.habit}</option>
+            
+            <option id='habitsOption' value={habit.isBoolean} >{habit.habit}</option>
         )
     }
     function closeModal () {
@@ -67,26 +72,34 @@ const AddHabit = (props) => {
                 // habit name
                 // if type is number, a goal
                 // user_id
+
+            console.log( document.getElementById('habitsForm').text)
         
         const habitInfo = {
             userId: props.userId,
-            habitName: document.getElementById('habitsForm').innerText,
+            habitName: 'test',
             targetNum: number
         }
     
-        fetch('/editHabit/add',{
+        fetch('/db/edithabit/add',{
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(habitInfo)
         })
+        .then(data => data.json)
+        .then(data => {
+            console.log(data)
+            // expecting this object
+                    // { habit: 'Drink water',
+                    // habitId: 1,
+                    // type: 'number',
+                    // status: 1,
+                    // goal: 10,
+                    // completed: false }
 
-        //
-        // { habit: 'Drink water',
-        // habitId: 1,
-        // type: 'number',
-        // status: 1,
-        // goal: 10,
-        // completed: false }
+        })
+
+        
 
    
     }

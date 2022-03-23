@@ -6,7 +6,7 @@ const path = require('path');
 const signupRouter = require('./routes/signup.js');
 const loginRouter = require('./routes/login');
 const feedRouter = require('./routes/feed.js');
-const edithabitRouter = require('./routes/edithabit');
+const edithabitRouter = require('./routes/edithabit.js');
 // const calendarRouter = require('./routes/calendar');
 
 const cors = require('cors');

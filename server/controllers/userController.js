@@ -55,6 +55,7 @@ userController.getUserInfo = (req, res, next) => {
 };
 
 userController.assignHabit = (req, res, next) => {
+  console.log('inside uservcontroller')
   const { userId, habitName, targetNum } = req.body;
   const habitPairs = {
     Water: 1,
@@ -63,6 +64,30 @@ userController.assignHabit = (req, res, next) => {
     'Sleep on Time': 4,
     Stretch: 5,
   };
+  let type;
+  if(targetNum === null){
+      const habitInfo = {
+      habit: habitName,
+      habitId: habitPairs[habitName],
+      type: 'boolean',
+      status: null,
+      goal: null,
+      completed: false
+    }
+  } else{
+    const habitInfo = {
+    habit: habitName,
+    habitId: habitPairs[habitName],
+    type: 'number',
+    status: 0,
+    goal: targetNum,
+    completed: false
+
+  }
+  }
+
+  res.locals.habitData = habitInfo;
+  
   res.locals.userId = userId;
   res.locals.habitId = habitPairs[habitName];
   res.locals.targetNum = targetNum;
