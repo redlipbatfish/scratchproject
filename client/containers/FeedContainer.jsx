@@ -11,8 +11,12 @@ import EditHabit from '../components/EditHabit.jsx';
 
 // TODO: add calendar
 const mapStateToProps = state => ({
-    todayHabit: state.habits.todayHabit,
-    calendar: state.habits.calendar
+    showAddModal: state.habits.showModalAdd,
+    showEditModal: state.habits.showModalEdit,
+    activeHabits: state.habits.activeHabits,
+    calendar: state.habits.calendar,
+    allHabits: state.habits.allHabits,
+    userId: state.habits.userId
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -24,7 +28,8 @@ const mapDispatchToProps = (dispatch) => {
         showModalAdd: (show) => dispatch(actions.showModalAddActionCreator(show)),
         hideModalAdd: (show) => dispatch(actions.hideModalAddActionCreator(show)),
         showModalEdit: (show) => dispatch(actions.showModalEditActionCreator(show)),
-        hideModalEdit: (show) => dispatch(actions.hideModalEditActionCreator(show))
+        hideModalEdit: (show) => dispatch(actions.hideModalEditActionCreator(show)),
+        addHabit: (data) => dispatch(actions.addHabitActionCreate(data))
     }
 };
 
@@ -38,13 +43,18 @@ class FeedContainer extends Component {
         console.log('calendar', this.props) 
         return(
             <div>
-                {/* <AddHabit 
+                <AddHabit 
+                    visible = {this.props.showAddModal}
                     show={this.props.showModalAdd}
                     hideModalAdd={this.props.hideModalAdd} 
-                    habits={this.props.habits}/> */}
+                    activeHabits={this.props.activeHabits}
+                    allHabits={this.props.allHabits}
+                    userId = {this.props.userId}
+                    addHabit = {this.props.addHabit}
+                    />
                 {/* <EditHabit 
                     show={this.props.showModalEdit} 
-                    habits={this.props.todayHabit}/> */}
+                    habits={this.props.activeHabits}/> */}
                 <TopBar 
                     showModalAdd={this.props.showModalAdd}/>
                 <Calendar 
@@ -54,14 +64,14 @@ class FeedContainer extends Component {
                     completeBool={this.props.completeBoolHabit} 
                     incrementNum={this.props.incrementNumHabit} 
                     decrementNum={this.props.decrementNumHabit} 
-                    todayHabit={this.props.todayHabit}
+                    activeHabits={this.props.activeHabits}
                     showModalAdd={this.props.showModalAdd}
                     />
                 {/* <Completed 
                     show={this.props.showModalEdit} 
                     uncompleteBool={this.props.uncompleteBoolHabit} 
                     decrementNum={this.props.decrementNumHabit} 
-                    todayHabit={this.props.todayHabit}/> */}
+                    activeHabits={this.props.activeHabits}/> */}
             </div>
         )
     };

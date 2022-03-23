@@ -61,3 +61,8 @@ export const hideModalEditActionCreator = show => ({
   type: types.HIDE_MODAL_EDIT,
   payload: show,
 })
+
+export const addHabitActionCreate = data => ({
+  type: types.ADD_HABIT,
+  payload: data
+})

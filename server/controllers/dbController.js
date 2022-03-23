@@ -100,7 +100,7 @@ dbController.getUserInfo = async (req, res, next) => {
         JOIN habits h ON uhr.habit_id = h.id
         WHERE date=(SELECT CURRENT_DATE) AND uhr.user_id=$1`;
   const todayRecord = await db.query(todayRecordQuery, [userId]);
-  res.locals.todayHabit = [];
+  res.locals.activeHabits = [];
 
   // Extract data from database and store into habit
   for (let row of todayRecord.rows) {
@@ -119,7 +119,7 @@ dbController.getUserInfo = async (req, res, next) => {
     //   habit.push(1);
     // else 
     habit.push(row.fullfilled_percent);
-    res.locals.todayHabit.push(habit);
+    res.locals.activeHabits.push(habit);
   }
   return next();
 };
