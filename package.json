@@ -20,11 +20,13 @@
   },
   "homepage": "https://github.com/redlipbatfish/scratchproject#readme",
   "dependencies": {
+    "chart.js": "^3.7.1",
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "node": "^17.7.1",
     "pg": "^8.7.3",
     "react": "^17.0.2",
+    "react-chartjs-2": "^4.0.1",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
     "react-router": "^6.2.2",
