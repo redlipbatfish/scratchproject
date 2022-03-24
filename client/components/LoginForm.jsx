@@ -56,6 +56,7 @@ const LoginForm = (props) => {
   return (
     <div id='login-form'>
       <h1>Habitual</h1>
+      
       {/* <Link to="/feed">About</Link> */}
       <div className='wrapper-login'>
         <input autoComplete="off" type='text' className='login-input' id='username-input' name='username-input' placeholder='Email' />
@@ -70,6 +71,3 @@ const LoginForm = (props) => {
 };
 
 export default LoginForm;
-
-
-// export connect(mapstatetoprops, mapdispatchtoprops)(loginform)
