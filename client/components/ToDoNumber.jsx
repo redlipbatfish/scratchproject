@@ -1,7 +1,6 @@
 import React from 'react';
 
 const ToDoNumber = (props) => {
-    console.log("Todonumber", props);
     const habit = props.habit;
     const percentage = 100 * (habit.status/habit.goal);
 
@@ -18,18 +17,21 @@ const ToDoNumber = (props) => {
         }
     }
     const editHabit = () => {
-        props.show();
+
+        console.log('clicked')
+        props.show(habit.habitId);
     }
 
-console.log(percentage)
+
     return (
         <div className='item-todo'>
             <div className='wrapper-habit-text'>
                 <div className='habit-name habit-text'>{habit.habit}</div>
+                <div className='numHabit-status habit-text'>{habit.status}/{habit.goal}</div>
                 {/* <div className='habit-status habit-text'>{`${habit.status} / ${habit.goal}`}</div> */}
             </div>
             <div className='progress-container'>
-                <div className='wrapper-progressbar' onClick={()=>{}}>
+                <div className='wrapper-progressbar' onClick={editHabit}>
                     <div className='progressbar' style={{width: `${percentage}%`}}></div>
                 </div>
                 <div className='wrapper-btns'>

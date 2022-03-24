@@ -65,6 +65,10 @@ h1 {
       border-color: rgb(202, 0, 0);
     }
     .modal-footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         padding-bottom: 15px;
 
         .btn-save {
@@ -190,10 +194,11 @@ h1 {
         background-color: $bluesapphire;
         color: $white;
         flex-grow: 1;
-        border-radius: 5px 0px 0px 5px;
+        border-radius:0px 5px 5px 0px;
         font-weight: 600;
         font-size: 1.5rem;
         line-height: 1.4;
+        border-style: none;
     }
     .edit-decrement:hover {
       cursor: pointer;
@@ -202,10 +207,11 @@ h1 {
         background-color: $bluesapphire;
         color: $white;
         flex-grow: 1;
-        border-radius: 0px 5px 5px 0px;
+        border-radius: 5px 0px 0px 5px;
         font-weight: 600;
         font-size: 1.5rem;
         line-height: 1.5;
+        border-style: none;
     }
     .edit-increment:hover {
       cursor: pointer;

@@ -11,6 +11,12 @@ import EditHabit from '../components/EditHabit.jsx';
 // import pie from Pie.js
 import Pie from '../components/Pie.jsx';
 import 'chart.js/auto'
+
+import { useState } from 'react';
+
+
+
+
 // TODO: add calendar
 const mapStateToProps = state => ({
     showAddModal: state.habits.showModalAdd,
@@ -31,18 +37,28 @@ const mapDispatchToProps = (dispatch) => {
         hideModalAdd: (show) => dispatch(actions.hideModalAddActionCreator(show)),
         showModalEdit: (show) => dispatch(actions.showModalEditActionCreator(show)),
         hideModalEdit: (show) => dispatch(actions.hideModalEditActionCreator(show)),
-        addHabit: (data) => dispatch(actions.addHabitActionCreate(data))
+        addHabit: (data) => dispatch(actions.addHabitActionCreate(data)),
+        editActiveHabit: (data) => dispatch(actions.editActiveHabitActionCreator(data)),
+        deactivateHabit: (data) => dispatch(actions.deactivateHabitActionCreator(data))
     }
 };
+
 
 
 class FeedContainer extends Component {
     constructor(props) {
         super(props)
     }
+
+    
     
     render() {
-        console.log('calendar', this.props) 
+        // const [selectedHabit, setSelectedHabit] = useState({
+        //     id: null,
+        //     type: null,
+        // });
+        //console.log('calendar', this.props) 
+         console.log('active habits', this.props.activeHabits)
         return(
 
             <div className='Main-Container'>
@@ -56,9 +72,14 @@ class FeedContainer extends Component {
                     userId = {this.props.userId}
                     addHabit = {this.props.addHabit}
                     />
-                {/* <EditHabit 
-                    show={this.props.showModalEdit} 
-                    habits={this.props.activeHabits}/> */}
+                <EditHabit 
+                    hide={this.props.hideModalEdit}
+                    show={this.props.showEditModal} 
+                    habits={this.props.activeHabits}
+                    userId = {this.props.userId} 
+                    editHabit = {this.props.editActiveHabit}
+                    deactivateHabit = {this.props.deactivateHabit}                 
+                    />
                 <TopBar 
                     showModalAdd={this.props.showModalAdd}/>
                 <Calendar 
@@ -70,14 +91,16 @@ class FeedContainer extends Component {
                     decrementNum={this.props.decrementNumHabit} 
                     activeHabits={this.props.activeHabits}
                     showModalAdd={this.props.showModalAdd}
+                    
                     />
-                    |{/* pie graph element */}
+                    {/* pie graph element */}
                     <Pie/>
-                {/* <Completed 
-                    show={this.props.showModalEdit} 
+                 <Completed 
+                    showModalEdit={this.props.showModalEdit} 
                     uncompleteBool={this.props.uncompleteBoolHabit} 
                     decrementNum={this.props.decrementNumHabit} 
-                    activeHabits={this.props.activeHabits}/> */}
+                    activeHabits={this.props.activeHabits}  
+                    /> 
             </div>
         )
     };
