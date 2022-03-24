@@ -55,17 +55,49 @@ userController.getUserInfo = (req, res, next) => {
 };
 
 userController.assignHabit = (req, res, next) => {
+ 
   const { userId, habitName, targetNum } = req.body;
+
   const habitPairs = {
-    Water: 1,
-    'Make Bed': 2,
-    'Walk Dog': 3,
-    'Sleep on Time': 4,
-    Stretch: 5,
+    'Drink water': 1,
+    'Make bed': 2,
+    'Walk dog': 3,
+    'Sleep on time': 4,
+    'Stretch': 5,
   };
+  //console.log('user id - ', targetNum)
+  let type;
+  if(targetNum === null){
+      const habitInfo = {
+      habit: habitName,
+      habitId: habitPairs[habitName],
+      type: 'boolean',
+      status: null,
+      goal: null,
+      completed: false
+      
+    }
+    res.locals.habitData = habitInfo;
+  } else{
+    const habitInfo = {
+    habit: habitName,
+    habitId: habitPairs[habitName],
+    type: 'number',
+    status: 0,
+    goal: targetNum,
+    completed: false
+  
+  }
+  res.locals.habitData = habitInfo;
+  }
+  
+
+
+  
   res.locals.userId = userId;
   res.locals.habitId = habitPairs[habitName];
   res.locals.targetNum = targetNum;
+ 
   return next();
 };
 

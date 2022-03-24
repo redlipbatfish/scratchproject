@@ -1,12 +1,12 @@
 import * as types from '../constants/actionTypes';
-
+// activeHabits
 const initialState = {
   userId: null,
-  todayHabit: [
+  activeHabits: [
     { habit: 'Drink water',
       habitId: 1,
       type: 'number',
-      status: 1,
+      status: 0,
       goal: 10,
       completed: false }
   ],
@@ -77,13 +77,25 @@ const initialState = {
 
 const habitsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case types.ADD_HABIT: {
+
+
+      const newHabits = JSON.parse(JSON.stringify(state.activeHabits))
+      newHabits.push(action.payload)
+
+      return{
+        ...state,
+        activeHabits: newHabits
+      }
+
+    }
     case types.LOGIN_USER: {
       
     }
 
     case types.GET_FEED: {
-      const { calendar, todayHabit, userId } = action.payload;
-      const newState = { ...state, calendar, todayHabit, userId }
+      const { calendar, activeHabits, userId } = action.payload;
+      const newState = { ...state, calendar, activeHabits, userId }
       console.log('below is new state');
       console.log(newState);
       return newState;
@@ -120,10 +132,10 @@ const habitsReducer = (state = initialState, action) => {
     }
 
     case types.INCREMENT_NUM_HABIT: {
-      console.log(state.todayHabit)
+      console.log(state.activeHabits)
       const habits = [];
-      for (let i = 0; i < state.todayHabit.length; i++) {
-        habits.push({...state.todayHabit[i]});
+      for (let i = 0; i < state.activeHabits.length; i++) {
+        habits.push({...state.activeHabits[i]});
   
         // increment the status for the target habit, if this completes habit change to completed
         if (habits[i].habitId === action.payload ) {
@@ -135,14 +147,14 @@ const habitsReducer = (state = initialState, action) => {
 
       return {
         ...state,
-        todayHabit : habits,
+        activeHabits : habits,
       };
     }
 
     case types.DECREMENT_NUM_HABIT: {
       const habits = [];
-      for (let i = 0; i < state.todayHabit.length; i++) {
-        habits.push({...state.todayHabit[i]});
+      for (let i = 0; i < state.activeHabits.length; i++) {
+        habits.push({...state.activeHabits[i]});
 
         if (habits[i].habitId === action.payload ) {
           if (habits[i].completed === true) habits[i].completed = false;
@@ -151,7 +163,7 @@ const habitsReducer = (state = initialState, action) => {
       }
         return {
           ...state,
-          todayHabit : habits,
+          activeHabits : habits,
         };
       }
       

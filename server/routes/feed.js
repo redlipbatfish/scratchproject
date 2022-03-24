@@ -13,7 +13,7 @@ router.post(
   (req, res) => {
     return res.status(200).json({
       calendar: res.locals.calendarRecord,
-      todayHabit: res.locals.todayHabit,
+      activeHabits: res.locals.activeHabits,
     });
   }
 );
