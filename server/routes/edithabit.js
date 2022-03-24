@@ -1,6 +1,7 @@
 const express = require('express');
 const dbController = require('../controllers/dbController');
 const userController = require('../controllers/userController');
+const habitController = require('../controllers/habitController')
 
 const router = express.Router();
 
@@ -15,13 +16,19 @@ router.post(
 );
 
 // update today's record ROUTE HANDLER
-router.post(
+router.patch(
   '/update',
-  userController.updateRecord,
-  dbController.updateRecord,
+  habitController.updateHabit,
   (req, res) => {
     return res.status(200).json('Habit updated!');
   }
 );
+
+router.patch(
+  '/delete',
+  habitController.removeHabit,(req, res) => {
+    return res.status(200).json('Habit deleted!')
+  }
+)
 
 module.exports = router;

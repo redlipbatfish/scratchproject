@@ -13,7 +13,10 @@ const initialState = {
 
   calendar: [],
   showModalAdd: false,
-  showModalEdit: false,
+  showModalEdit: {
+    show: false,
+    habitId : null
+  },
   allHabits: [
     {
       habit: "Drink water",
@@ -43,46 +46,72 @@ const initialState = {
   ]
 }
 
-    // { habit: 'Drink water',
-    //   habitId: 1,
-    //   type: 'number',
-    //   status: 1,
-    //   goal: 10,
-    //   completed: false },
-
-    // { habit: 'Make bed',
-    //   habitId: 2,
-    //   type: 'boolean',
-    //   completed: true },
-
-    // { habit: 'Walk dog',
-    //   habitId: 3,
-    //   type: 'number',
-    //   status: 5,
-    //   goal: 5,
-    //   completed: true},
-
-    // { habit: 'Sleep on time',
-    //   habitId: 4,
-    //   type: 'boolean',
-    //   completed: false },
-
-    // { habit: 'Stretch',
-    //   habitId: 5,
-    //   type: 'number',
-    //   status: 4,
-    //   goal: 5,
-    //   completed: false }
-  // ],
-
 const habitsReducer = (state = initialState, action) => {
   switch (action.type) {
+    // activeHabits: [
+    //   { habit: 'Drink water',
+    //     habitId: 1,
+    //     type: 'number',
+    //     status: 0,
+    //     goal: 10,
+    //     completed: false }
+    // ],
+    
+    case types.DEACTIVATE_HABIT: {
+      console.log('inside deactive habit')
+      const newActiveHabits = [];
+      // traverse through activeHabits
+      for (let i = 0; i < state.activeHabits.length; i++) {
+        // if current object has property of habitId
+        if (state.activeHabits[i]['habitId'] !== action.payload) {
+          newActiveHabits.push(state.activeHabits[i])
+        }
+      }
+
+      console.log('newactive habits-',newActiveHabits)
+      return {
+        ...state,
+        activeHabits: newActiveHabits
+      }
+    }
+    
+   
+    case types.EDIT_HABIT:{
+      
+     // copy active habits
+      const updatedHabits = [];
+      for(const habit of state.activeHabits){
+
+        // find the habit where the habit id is == to payload.habitId
+        if(habit.habitId === action.payload.habitId){
+
+          // change the completed status if the new goal is >= the current status, reassign status to new target 
+            if(habit.status >= action.payload.newTarget){
+              habit.completed = true;
+              habit.status = action.payload.newTarget;
+            }
+
+            // update the goal for that habit
+            habit.goal = action.payload.newTarget;
+        }
+
+        updatedHabits.push(habit)
+      }
+
+
+      return{
+        ...state,
+        activeHabits: updatedHabits
+      }
+
+    }
     case types.ADD_HABIT: {
 
-
+      // deep copy current active habits and push the new habit to that copy
       const newHabits = JSON.parse(JSON.stringify(state.activeHabits))
       newHabits.push(action.payload)
 
+      // return the updated habits
       return{
         ...state,
         activeHabits: newHabits
@@ -104,37 +133,38 @@ const habitsReducer = (state = initialState, action) => {
     }
 
     case types.COMPLETE_BOOL_HABIT: {
-      const habits = [];
-      for (let i = 0; i < state.habits.length; i++) {
-        habits.push({...state.habits[i]});
-        if (habits[i].habitId === action.payload ) {
-          habits[i].completed = true;
+      const activeHabits = [];
+      for (let i = 0; i < state.activeHabits.length; i++) {
+        activeHabits.push(state.activeHabits[i]);
+        if (activeHabits[i].habitId === action.payload ) {
+          activeHabits[i].completed = true;
         }
+        
       }
 
       return {
         ...state,
-        habits
+        activeHabits
       };
     }
 
     case types.UNCOMPLETE_BOOL_HABIT: {
-      const habits = [];
-      for (let i = 0; i < state.habits.length; i++) {
-        habits.push({...state.habits[i]});
+      const activeHabits = [];
+      for (let i = 0; i < state.activeHabits.length; i++) {
+        habits.push({...state.activeHabits[i]});
 
-        if (habits[i].habitId === action.payload ) {
-          habits[i].completed = false;
+        if (activeHabits[i].habitId === action.payload ) {
+          activeHabits[i].completed = false;
         }
       }
       return {
         ...state,
-        habits
+        activeHabits
       };
     }
 
     case types.INCREMENT_NUM_HABIT: {
-      console.log(state.activeHabits)
+      //console.log(state.activeHabits)
       const habits = [];
       for (let i = 0; i < state.activeHabits.length; i++) {
         habits.push({...state.activeHabits[i]});
@@ -186,19 +216,25 @@ const habitsReducer = (state = initialState, action) => {
       }
     }
     case types.SHOW_MODAL_EDIT: {
-      let showModalEdit = true;
+      const show = {
+        show: true,
+        habitId: action.payload
+      }
       
       return {
         ...state,
-        showModalEdit
+        showModalEdit : show,
       }
     }
     case types.HIDE_MODAL_EDIT: {
-      let showModalEdit = false;
+      const hide = {
+        show: false,
+        habitId: null
+      }
       
       return {
         ...state,
-        showModalEdit
+        showModalEdit : hide
       }
     }
     default: {

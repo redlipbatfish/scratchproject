@@ -66,3 +66,8 @@ export const addHabitActionCreate = data => ({
   type: types.ADD_HABIT,
   payload: data
 })
+
+export const editActiveHabitActionCreator = data => ({
+  type: types.EDIT_HABIT,
+  payload: data
+})

@@ -102,63 +102,45 @@ dbController.getUserInfo = async (req, res, next) => {
   const todayRecord = await db.query(todayRecordQuery, [userId]);
   res.locals.activeHabits = [];
 
-  //console.log(todayRecord.rows)
+  console.log('rows -' ,todayRecord.rows)
+  if(todayRecord.rows.length > 0){
+      // Extract data from database and store into habit
+    for (let row of todayRecord.rows) {
+      const habit = {};
+      habit.habitId = row.habit_id;
+      habit.habit = row.habit_name;
 
-  // Extract data from database and store into habit
-  for (let row of todayRecord.rows) {
-    const habit = {};
-    habit.habitId = row.habit_id;
-    habit.habit = row.habit_name;
+      // find target number
+      const targetQuery = `
+      SELECT target_num FROM user_habits
+      WHERE user_id=$1 AND habit_id=$2 AND active = true;`;
+      const targetNum = await db.query(targetQuery, [row.user_id, row.habit_id]);
 
-    // if(status === goal){
-    //   habit.completed = true;
-    // }
-
-    // { habit: 'Drink water',
-    // habitId: 1,
-    // type: 'number',
-    // status: 0,
-    // goal: 10,
-    // completed: false }
-
-    // query to get habit type/goal
-   
-    // query to get status
-
-
-
-
-
-
-
-    // find target number
-    const targetQuery = `
-    SELECT target_num FROM user_habits
-    WHERE user_id=$1 AND habit_id=$2 AND active = true;
-    `;
-    const targetNum = await db.query(targetQuery, [row.user_id, row.habit_id]);
-    // if the target num is null then type is boolean
-    if(!targetNum.rows[0].target_num){
-      habit.type = 'boolean'
-      habit.status = null;
-      habit.goal = null;
-      habit.completed = false;
+      // check if we find any active habits
+      if(targetNum.rows.length > 0){
+        console.log(targetNum.rows[0].target_num)
+        if(targetNum.rows[0].target_num === null){
+        habit.type = 'boolean'
+        habit.status = null;
+        habit.goal = null;
+        habit.completed = false;
+      }
+      else {
+        habit.type = 'number'
+        habit.status = 0;
+        habit.goal = targetNum.rows[0].target_num;
+        habit.completed = false;
+      }
+      // add those habits to the active habits array
+      res.locals.activeHabits.push(habit);
+      }
+      
+  
+      
     }
-    else {
-      habit.type = 'number'
-      habit.status = 0;
-      habit.goal = targetNum.rows[0].target_num;
-      habit.completed = false;
-    }
-    
-
-    // if (row.fullfilled_percent != 0 || row.fullfilled_percent != 1)
-    //   habit.push(1);
-    // else 
-    // habit.push(row.fullfilled_percent);
-
-    res.locals.activeHabits.push(habit);
   }
+
+ 
   return next();
 };
 

@@ -92,7 +92,7 @@ const AddHabit = (props) => {
                     // completed: false }
         })
 
-        //props.hideModalAdd();
+        props.hideModalAdd();
 
     // create 
     }

@@ -26,11 +26,27 @@ habitController.assignHabit = (req, res, next) => {
 
 // Update a habit (change a goal/ target)
 habitController.updateHabit = (req, res, next) => {
-    // insert row into user-habits
+    
+    
+    // select the habit from the user
+    // change the targetnum to newtarget
+    console.log(req.body)
+    const data = [req.body.newTarget, req.body.userId, req.body.habitId];
+    console.log(data)
+    const queryString = 'UPDATE user_habits SET target_num = $1 WHERE user_id=$2 AND habit_id =$3;';
+    db.query(queryString,data)
+    next();
 };
 
 // Remove a habit (delete)
-habitController.removeHabit = (req, res, next) => {};
+habitController.removeHabit = (req, res, next) => {
+    // update record from user-habits, change habit active property to false
+    const data = [req.body.userId, req.body.habitId];
+    const queryString = `UPDATE user_habits SET active = false WHERE user_id=$1 AND habit_id=$2;`;
+
+    db.query(queryString, data);
+    next();
+};
 
 // update how much have finsihed today
 habitController.updateFinished = (req, res, next) => {};
