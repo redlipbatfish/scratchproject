@@ -26,11 +26,12 @@ const ToDos = (props) => {
 
     return (
         <div className='wrapper-todo'>
-            <div id='addHabitButton'>
-                <button id='add-hbt' onClick={addHabit}><span id="plus-icon">+&nbsp;</span>&nbsp;Add habit</button>
+            {/* <div id='addHabitButton'>
+                <button id='add-hbt' onClick={addHabit}><span id="plus-icon">+&nbsp;</span>&nbsp;Ad habit</button>
+            </div> */}
+            <div>
+                {todoList} 
             </div>
-            
-            {todoList} 
         </div>
     );
 };

@@ -8,7 +8,9 @@ import ToDos from '../components/ToDos.jsx';
 import Completed from '../components/Completed.jsx';
 import AddHabit from '../components/AddHabit.jsx';
 import EditHabit from '../components/EditHabit.jsx';
-
+// import pie from Pie.js
+import Pie from '../components/Pie.jsx';
+import 'chart.js/auto'
 // TODO: add calendar
 const mapStateToProps = state => ({
     todayHabit: state.habits.todayHabit,
@@ -37,7 +39,7 @@ class FeedContainer extends Component {
     render() {
         console.log('calendar', this.props) 
         return(
-            <div>
+            <div className='Main-Container'>
                 {/* <AddHabit 
                     show={this.props.showModalAdd}
                     hideModalAdd={this.props.hideModalAdd} 
@@ -57,6 +59,8 @@ class FeedContainer extends Component {
                     todayHabit={this.props.todayHabit}
                     showModalAdd={this.props.showModalAdd}
                     />
+                    |{/* pie graph element */}
+                    <Pie/>
                 {/* <Completed 
                     show={this.props.showModalEdit} 
                     uncompleteBool={this.props.uncompleteBoolHabit} 
