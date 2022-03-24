@@ -6,7 +6,7 @@ const initialState = {
     { habit: 'Drink water',
       habitId: 1,
       type: 'number',
-      status: 1,
+      status: 0,
       goal: 10,
       completed: false }
   ],
