@@ -44,7 +44,9 @@ class FeedContainer extends Component {
     render() {
         console.log('calendar', this.props) 
         return(
+
             <div className='Main-Container'>
+
                 <AddHabit 
                     visible = {this.props.showAddModal}
                     show={this.props.showModalAdd}
