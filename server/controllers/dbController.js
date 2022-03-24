@@ -102,6 +102,8 @@ dbController.getUserInfo = async (req, res, next) => {
   const todayRecord = await db.query(todayRecordQuery, [userId]);
   res.locals.activeHabits = [];
 
+  //console.log(todayRecord.rows)
+
   // Extract data from database and store into habit
   for (let row of todayRecord.rows) {
     const habit = [];
@@ -113,7 +115,13 @@ dbController.getUserInfo = async (req, res, next) => {
     WHERE user_id=$1 AND habit_id=$2;
     `;
     const targetNum = await db.query(targetQuery, [row.user_id, row.habit_id]);
-    habit.push(targetNum.rows[0].target_num);
+    if(!targetNum.rows[0].target_num){
+      habit.push(null)
+    }
+    else {
+      habit.push(targetNum.rows[0].target_num);
+    }
+    
 
     // if (row.fullfilled_percent != 0 || row.fullfilled_percent != 1)
     //   habit.push(1);
@@ -126,12 +134,12 @@ dbController.getUserInfo = async (req, res, next) => {
 
 // add a new user-habit pair
 dbController.assignHabit = async (req, res, next) => {
-  console.log('inside dbcontroller')
+
   // add to user-habits table
   const userId = res.locals.userId;
   const habitId = res.locals.habitId;
   const targetNum = res.locals.targetNum;
-  console.log(userId, habitId, targetNum);
+  //console.log(userId, habitId, targetNum);
   const insertUserHabitQuery = `
       INSERT INTO user_habits (user_id, habit_id, target_num, active)
       VALUES ($1, $2, $3, 'true');

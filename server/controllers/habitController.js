@@ -25,7 +25,9 @@ habitController.assignHabit = (req, res, next) => {
 };
 
 // Update a habit (change a goal/ target)
-habitController.updateHabit = (req, res, next) => {};
+habitController.updateHabit = (req, res, next) => {
+    // insert row into user-habits
+};
 
 // Remove a habit (delete)
 habitController.removeHabit = (req, res, next) => {};

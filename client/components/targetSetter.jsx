@@ -1,23 +1,23 @@
 import React from 'react';
-
+import { useState } from 'react';
 
 const TargetSetter = (props) => {
 
     if(!props.show) return null;
+   
+    const [target, setTarget] = useState(1);
+    props.setNumber(target);
 
     function incrementValue(){
-        document.getElementById('targetNum').value++;
-
-
+        setTarget(target + 1);
+        props.setNumber(target + 1);
     }
 
     function decrementValue(){
-        
-        const num = document.getElementById('targetNum').value
-        if(num > 0){
-          document.getElementById('targetNum').value--;  
-        } 
-        
+        if (target > 1) {
+            setTarget(target - 1);
+            props.setNumber(target - 1);
+        }
     }
 
     return (
@@ -25,8 +25,8 @@ const TargetSetter = (props) => {
             <div>
                 <div className='wrapper-editHabit'></div>
                 <button onClick={decrementValue}>-</button>
-                
-                <input type='text' className='edit-field' value='1' id='targetNum'></input>
+                {target}
+                {/* <input type='text' className='edit-field' value='1' id='targetNum'></input> */}
                 <button onClick={incrementValue}>+</button>
             </div>
             

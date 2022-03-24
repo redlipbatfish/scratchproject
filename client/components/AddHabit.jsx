@@ -52,16 +52,17 @@ const AddHabit = (props) => {
     }
 
     const habitsList = [] 
+    let index = 0;
+
     for (let habit of availableHabits) {
-        const habitTest = {
-                boolean: habit.isBoolean,
-                name: habit.habit
-            }
+       
         habitsList.push(
             // <option value={habit.habitId}>{habit.habit}</option>
             
-            <option id='habitsOption' value={habit.isBoolean} >{habit.habit}</option>
+            <option id='habitsOption' value={index} >{habit.habit}</option>
+            
         )
+        index +=1;
     }
     function closeModal () {
         props.hideModalAdd();
@@ -73,11 +74,12 @@ const AddHabit = (props) => {
                 // if type is number, a goal
                 // user_id
 
-            console.log( document.getElementById('habitsForm').text)
         
+        const index = parseInt(document.getElementById('habitsForm').value)
+        console.log(availableHabits[index].habit)
         const habitInfo = {
             userId: props.userId,
-            habitName: 'test',
+            habitName: availableHabits[index].habit,
             targetNum: number
         }
     
@@ -89,6 +91,7 @@ const AddHabit = (props) => {
         .then(data => data.json)
         .then(data => {
             console.log(data)
+            console.log('added')
             // expecting this object
                     // { habit: 'Drink water',
                     // habitId: 1,
@@ -101,23 +104,27 @@ const AddHabit = (props) => {
 
         
 
-   
+        //props.hideModalAdd();
     }
     const handleSelectChange = (e) => {
         console.log('hit');
     }
 
     
-    
+    // const [habitName, setHabitName] = useState(null)
 
     function checkHabitBool () {
-          
-        if (document.getElementById('habitsForm').value === 'false') {
+        const index = parseInt(document.getElementById('habitsForm').value)
+    
+        if (availableHabits[index].isBoolean === false) {
               setShowSetter(true)   
         }
 
         /// change numstate to null
-       else setShowSetter(false);
+       else {
+           setNumber(null);
+           setShowSetter(false);
+       }
     }
     
 
@@ -134,7 +141,7 @@ const AddHabit = (props) => {
                     <select onChange={checkHabitBool} id='habitsForm' list='habits' className='habit-picker' name='habit-choice'>
                         { habitsList }
                     </select>
-                        <TargetSetter show = {showSetter} number={setNumber}/>
+                        <TargetSetter show = {showSetter} setNumber={setNumber} currNumber={number}/>
                 </div>
                 <div className='modal-footer'>
                     <div id='test' className="btn-save" onClick={addHabit}>
