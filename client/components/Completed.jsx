@@ -4,9 +4,9 @@ import CompletedHabit from '../components/CompletedHabit.jsx';
 
 const Completed = (props) => {
     // console.log('completed props', props)
-    const state = props.habits;
+    const activeHabits = props.activeHabits;
     const completedList = [];
-    for (let habit of state.habits) {
+    for (let habit of activeHabits) {
         if (habit.completed === true) {
             if (habit.type === 'number') completedList.push(<CompletedHabit decrementNum={props.decrementNum} habit={habit}/>)
             if (habit.type === 'boolean') completedList.push(<CompletedHabit uncompleteBool={props.uncompleteBool} habit={habit}/>)

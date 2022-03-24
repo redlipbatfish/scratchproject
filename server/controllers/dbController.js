@@ -106,27 +106,57 @@ dbController.getUserInfo = async (req, res, next) => {
 
   // Extract data from database and store into habit
   for (let row of todayRecord.rows) {
-    const habit = [];
-    habit.push(row.habit_id);
-    habit.push(row.habit_name);
+    const habit = {};
+    habit.habitId = row.habit_id;
+    habit.habit = row.habit_name;
+
+    // if(status === goal){
+    //   habit.completed = true;
+    // }
+
+    // { habit: 'Drink water',
+    // habitId: 1,
+    // type: 'number',
+    // status: 0,
+    // goal: 10,
+    // completed: false }
+
+    // query to get habit type/goal
+   
+    // query to get status
+
+
+
+
+
+
+
     // find target number
     const targetQuery = `
     SELECT target_num FROM user_habits
-    WHERE user_id=$1 AND habit_id=$2;
+    WHERE user_id=$1 AND habit_id=$2 AND active = true;
     `;
     const targetNum = await db.query(targetQuery, [row.user_id, row.habit_id]);
+    // if the target num is null then type is boolean
     if(!targetNum.rows[0].target_num){
-      habit.push(null)
+      habit.type = 'boolean'
+      habit.status = null;
+      habit.goal = null;
+      habit.completed = false;
     }
     else {
-      habit.push(targetNum.rows[0].target_num);
+      habit.type = 'number'
+      habit.status = 0;
+      habit.goal = targetNum.rows[0].target_num;
+      habit.completed = false;
     }
     
 
     // if (row.fullfilled_percent != 0 || row.fullfilled_percent != 1)
     //   habit.push(1);
     // else 
-    habit.push(row.fullfilled_percent);
+    // habit.push(row.fullfilled_percent);
+
     res.locals.activeHabits.push(habit);
   }
   return next();

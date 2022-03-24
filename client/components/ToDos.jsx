@@ -10,12 +10,14 @@ const ToDos = (props) => {
     const activeHabits = props.activeHabits;
     const todoList = [];
 
+    console.log(props.activeHabits)
     for (let habit of activeHabits) {
+        console.log('here is the habit')
         console.log(habit);
         // check if status of habit is not 1
-        if (habit[3] !== 1) {
+        if (habit['completed'] === false) {
             // check if type of habit is not null
-            if (habit[2] !== null) todoList.push(<ToDoNumber show={props.show} incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
+            if (habit['type'] === 'number') todoList.push(<ToDoNumber show={props.show} incrementNum={props.incrementNum} decrementNum={props.decrementNum} habit={habit} />)
             else todoList.push(<ToDoBoolean show={props.show} completeBool={props.completeBool} habit={habit} />)
         }
     }

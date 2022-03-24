@@ -40,9 +40,12 @@ class FeedContainer extends Component {
     constructor(props) {
         super(props)
     }
+
+    
     
     render() {
-        console.log('calendar', this.props) 
+        //console.log('calendar', this.props) 
+        console.log('active habits', this.props.activeHabits)
         return(
 
             <div className='Main-Container'>
@@ -71,13 +74,13 @@ class FeedContainer extends Component {
                     activeHabits={this.props.activeHabits}
                     showModalAdd={this.props.showModalAdd}
                     />
-                    |{/* pie graph element */}
+                    {/* pie graph element */}
                     <Pie/>
-                {/* <Completed 
+                 <Completed 
                     show={this.props.showModalEdit} 
                     uncompleteBool={this.props.uncompleteBoolHabit} 
                     decrementNum={this.props.decrementNumHabit} 
-                    activeHabits={this.props.activeHabits}/> */}
+                    activeHabits={this.props.activeHabits}/> 
             </div>
         )
     };

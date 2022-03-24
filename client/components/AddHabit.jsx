@@ -36,31 +36,23 @@ const AddHabit = (props) => {
         activeHabitsArray.push(activeHabits[key].habitId);
     }
 
-    
-
     const availableHabits = [];
     const allHabits = props.allHabits;
     for (let habit of allHabits) {
-
 
         // push to available habits if the id is not in active habits
         if (!activeHabitsArray.includes(habit.habitId)){
             availableHabits.push(habit)
         }
-
-
     }
 
     const habitsList = [] 
     let index = 0;
 
     for (let habit of availableHabits) {
-       
         habitsList.push(
             // <option value={habit.habitId}>{habit.habit}</option>
-            
             <option id='habitsOption' value={index} >{habit.habit}</option>
-            
         )
         index +=1;
     }
@@ -73,7 +65,6 @@ const AddHabit = (props) => {
                 // habit name
                 // if type is number, a goal
                 // user_id
-
         
         const index = parseInt(document.getElementById('habitsForm').value)
         console.log(availableHabits[index].habit)
@@ -88,10 +79,10 @@ const AddHabit = (props) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(habitInfo)
         })
-        .then(data => data.json)
+        .then(data => data.json())
         .then(data => {
             console.log(data)
-            console.log('added')
+            props.addHabit(data)
             // expecting this object
                     // { habit: 'Drink water',
                     // habitId: 1,
@@ -99,17 +90,15 @@ const AddHabit = (props) => {
                     // status: 1,
                     // goal: 10,
                     // completed: false }
-
         })
 
-        
-
         //props.hideModalAdd();
+
+    // create 
     }
     const handleSelectChange = (e) => {
         console.log('hit');
     }
-
     
     // const [habitName, setHabitName] = useState(null)
 

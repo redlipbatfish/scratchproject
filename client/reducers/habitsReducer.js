@@ -95,6 +95,8 @@ const habitsReducer = (state = initialState, action) => {
 
     case types.GET_FEED: {
       const { calendar, activeHabits, userId } = action.payload;
+      console.log('incoming active habits',activeHabits)
+
       const newState = { ...state, calendar, activeHabits, userId }
       console.log('below is new state');
       console.log(newState);
